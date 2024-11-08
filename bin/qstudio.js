@@ -9,9 +9,10 @@ import figlet from "figlet"; // Char opening
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 
-import { init } from "../commands/init.mjs";
-import { version } from "../commands/version.mjs";
-import { language } from "../commands/language.mjs";
+import { init } from "../commands/init.js";
+import { test } from "../commands/test.js";
+import { version } from "../commands/version.js";
+import { language } from "../commands/language.js";
 
 program.name("qstudio").version("1.0.0").description("Quasar Studio");
 
@@ -21,6 +22,7 @@ const context = {
 };
 
 init(context);
+test(context);
 version(context);
 language(context);
 

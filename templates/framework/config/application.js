@@ -5,9 +5,12 @@ export const application = {
 		author: "Author name",
 		copyright: "MIT",
 	},
-	version: {
-		number: "0.1",
-		build: 0,
+	versioning: {
+		type: "manual",
+		version: {
+			number: "0.1",
+			build: 0,
+		},
 	},
 	languages: {
 		default: "en-US",
