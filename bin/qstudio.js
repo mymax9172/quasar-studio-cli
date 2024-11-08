@@ -11,6 +11,8 @@ import { dirname } from "path";
 
 import { init } from "../commands/init.js";
 import { test } from "../commands/test.js";
+import { update } from "../commands/update.js";
+
 import { version } from "../commands/version.js";
 import { language } from "../commands/language.js";
 
@@ -23,6 +25,8 @@ const context = {
 
 init(context);
 test(context);
+update(context);
+
 version(context);
 language(context);
 
