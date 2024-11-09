@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import * as fs from "fs";
 import { program } from "commander";
 import chalk from "chalk"; // Colors
 import inquirer from "inquirer"; // Questions and forms, confirmations
@@ -9,7 +10,6 @@ import figlet from "figlet"; // Char opening
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 
-import pkg from "../package.json" assert { type: "json" };
 import { init } from "../commands/init.js";
 import { test } from "../commands/test.js";
 import { update } from "../commands/update.js";
@@ -17,7 +17,13 @@ import { update } from "../commands/update.js";
 import { version } from "../commands/version.js";
 import { language } from "../commands/language.js";
 
-program.name("qstudio").version(pkg.version).description("Quasar Studio");
+const packageJsonContent = fs.readFileSync("../package.json", "utf8");
+const packageInfo = JSON.parse(packageJsonContent);
+
+program
+	.name("qstudio")
+	.version(packageInfo.version)
+	.description("Quasar Studio");
 
 const context = {
 	program,
