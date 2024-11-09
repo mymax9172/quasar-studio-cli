@@ -9,6 +9,7 @@ import figlet from "figlet"; // Char opening
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 
+import pkg from "../package.json" assert { type: "json" };
 import { init } from "../commands/init.js";
 import { test } from "../commands/test.js";
 import { update } from "../commands/update.js";
@@ -16,7 +17,7 @@ import { update } from "../commands/update.js";
 import { version } from "../commands/version.js";
 import { language } from "../commands/language.js";
 
-program.name("qstudio").version("1.0.0").description("Quasar Studio");
+program.name("qstudio").version(pkg.version).description("Quasar Studio");
 
 const context = {
 	program,
