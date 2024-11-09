@@ -17,14 +17,7 @@ import { update } from "../commands/update.js";
 import { version } from "../commands/version.js";
 import { language } from "../commands/language.js";
 
-console.log("DIR: " + process.cwd());
-const packageJsonContent = fs.readFileSync("../package.json", "utf8");
-const packageInfo = JSON.parse(packageJsonContent);
-
-program
-	.name("qstudio")
-	.version(packageInfo.version)
-	.description("Quasar Studio");
+program.name("qstudio").version("0.1").description("Quasar Studio");
 
 const context = {
 	program,
