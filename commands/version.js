@@ -28,7 +28,7 @@ export const version = (context) => {
 					parts[0] + "." + (Number(parts[1]) + 1);
 
 				const now = new Date();
-				application.version.build =
+				application.versioning.version.build =
 					"" +
 					now.getFullYear() +
 					(now.getMonth() + 1) +
