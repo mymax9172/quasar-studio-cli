@@ -1,6 +1,6 @@
 {
 	"name": "qstudio-cli",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "",
 	"main": "./bin/qstudio.js",
 	"type": "module",
