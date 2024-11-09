@@ -14,7 +14,16 @@ export const version = (context) => {
 			);
 
 			if (options.increment) {
-				const parts = application.version.number.split(".");
+				if (application.versioning.type != "manual") {
+					console.log(
+						chalk.red(
+							"Versioning type is not manual, cannot change it using this command"
+						)
+					);
+					return;
+				}
+
+				const parts = application.versioning.version.number.split(".");
 				application.version.number = parts[0] + "." + (Number(parts[1]) + 1);
 
 				const now = new Date();
@@ -37,9 +46,9 @@ export const version = (context) => {
 					console.log(
 						chalk.green(
 							"Application.mjs has been updated, version " +
-								application.version.number +
+								application.versioning.version.number +
 								" and build " +
-								application.version.build
+								application.versioning.version.build
 						)
 					);
 				} catch (error) {
@@ -49,9 +58,9 @@ export const version = (context) => {
 				console.log(
 					chalk.green(
 						"Current version: " +
-							application.version.number +
+							application.versioning.version.number +
 							" (build " +
-							application.version.build +
+							application.versioning.version.build +
 							")"
 					)
 				);
