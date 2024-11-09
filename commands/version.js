@@ -24,7 +24,8 @@ export const version = (context) => {
 				}
 
 				const parts = application.versioning.version.number.split(".");
-				application.version.number = parts[0] + "." + (Number(parts[1]) + 1);
+				application.versioning.version.number =
+					parts[0] + "." + (Number(parts[1]) + 1);
 
 				const now = new Date();
 				application.version.build =
