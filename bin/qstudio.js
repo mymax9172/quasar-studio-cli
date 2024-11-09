@@ -17,6 +17,7 @@ import { update } from "../commands/update.js";
 import { version } from "../commands/version.js";
 import { language } from "../commands/language.js";
 
+console.log("DIR: " + process.cwd());
 const packageJsonContent = fs.readFileSync("../package.json", "utf8");
 const packageInfo = JSON.parse(packageJsonContent);
 
