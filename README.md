@@ -6,19 +6,23 @@ Quasar Studio CLI is the way-yo-go tool to use Quasar Studio properly
 
 Quasar Studio CLI must be installed just once (and globally)
 
-1. `$ git clone https://github.com/mymax9172/quasar-studio-cli.git`
-2. Change your directory to the Quasar directory
-3. `$ npm install`
-4. `$ npm link`
+`$ npm install qstudio-cli -g`
 
 From now on, call qstudio from any folder that contains a Quasar application to use the CLI
 
 ## **Table of Contest**
 
+[**Install**](#install) - Install all missing libraries on the Quasar Studio Application
 [**Init**](#init) - Initialize the framework folder
 [**Test**](#test) - Run web server
 
 ## Commands
+
+### Install
+
+Install all missing libraries on the Quasar Studio Application, this should be called once created a new Quasar Studio Application
+
+`$ qstudio install`
 
 ### Init
 

@@ -33,6 +33,19 @@ export const update = (context) => {
 			// 	});
 			// }
 			// if (options.app || !options.cli) {
+
+			// Quasar Studio CLI
+			console.log(chalk.green("Updating Quasar Studio CLI ...."));
+			const npmProcess = spawn("npm", ["install", "-g", "qstudio-cli"], {
+				shell: true,
+				encoding: "utf8",
+			});
+
+			npmProcess.stdout.on("data", (chunk) => {
+				console.log("Quasar Studio CLI", info + "");
+			});
+
+			// Quasar Studio Application template
 			console.log(chalk.green("Updating Quasar Studio Application ...."));
 
 			const gitProcess = spawn("git", ["pull"], {
@@ -41,7 +54,7 @@ export const update = (context) => {
 			gitProcess.stdout.on("data", (info) => {
 				console.log("Quasar Studio Application", info + "");
 			});
-			// }
+			
 		});
 };
 
