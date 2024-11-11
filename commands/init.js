@@ -21,13 +21,13 @@ export const init = (context) => {
 		.action(async () => {
 			// Check if the framework directory exists
 			try {
-				await fs.stat(context.workingPath + "./framework");
+				await fs.stat(context.workingPath + "/framework");
 
 				const response = await inquirer.prompt(confirmQuestion);
 				if (!response.confirm) return;
 
 				// Remove the existing folder
-				await fs.rm(context.workingPath + "./framework", { recursive: true });
+				await fs.rm(context.workingPath + "/framework", { recursive: true });
 			} catch (error) {}
 
 			try {
