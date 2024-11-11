@@ -24,7 +24,7 @@ await (async function () {
 	if (process.argv[2] === "/t") path = process.cwd() + "\\" + process.argv[3];
 
 	const context = {
-		manifestVersion: "0.1.0",
+		manifestVersion: "0.1.1",
 		program,
 		workingPath: path,
 	};
