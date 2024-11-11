@@ -33,7 +33,7 @@ export const init = (context) => {
 			try {
 				// Create the folder structure
 				await fs.cp(
-					"./templates/framework",
+					context.libPath + "/templates/framework",
 					context.workingPath + "/framework",
 					{
 						recursive: true,
