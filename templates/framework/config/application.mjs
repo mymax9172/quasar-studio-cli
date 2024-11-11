@@ -1,5 +1,5 @@
 export const application = {
-	manifestVersion: "0.1.0",
+	manifestVersion: "0.1.1",
 	name: "Name of the application",
 	title: "Title of the application",
 	credits: {

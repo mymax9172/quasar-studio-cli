@@ -17,25 +17,51 @@ import { update } from "../commands/update.js";
 import { version } from "../commands/version.js";
 import { language } from "../commands/language.js";
 
-program.name("qstudio").version("0.1").description("Quasar Studio");
+await (async function () {
+	program.name("qstudio").version("0.1").description("Quasar Studio");
 
-const context = {
-	manifestVersion: "0.1.0",
-	program,
-	path: dirname(fileURLToPath(import.meta.url)) + "/..",
-};
+	let path = process.cwd(); // dirname(fileURLToPath(import.meta.url)) + "/..";
+	if (process.argv[2] === "/t") path = process.cwd() + "\\" + process.argv[3];
 
-init(context);
-test(context);
-update(context);
+	const context = {
+		manifestVersion: "0.1.0",
+		program,
+		workingPath: path,
+	};
 
-version(context);
-language(context);
+	// Check if working path is a Quasar Application
+	console.log("Working path:", context.workingPath);
 
-console.log(
-	chalk.yellow(
-		figlet.textSync("Quasar Studio", { horizontalLayout: "standard" })
-	)
-);
+	if (!fs.existsSync(context.workingPath + "/quasar.config.js")) {
+		console.log(
+			chalk.red(
+				"Use qstudio only in a Quasar application folder, this folder is not ok: " +
+					context.workingPath
+			)
+		);
+		return;
+	}
 
-program.parse(process.argv);
+	init(context);
+	test(context);
+	update(context);
+
+	version(context);
+	language(context);
+
+	console.log(
+		chalk.yellow(
+			figlet.textSync("Quasar Studio", { horizontalLayout: "standard" })
+		)
+	);
+
+	if (process.argv[2] === "/t") {
+		const args = [];
+		process.argv.forEach((e, index) => {
+			if (index >= 4) args.push(e);
+		});
+		program.parse(args, { from: "user" });
+	} else {
+		program.parse(process.argv);
+	}
+})();

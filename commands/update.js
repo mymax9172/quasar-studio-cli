@@ -1,5 +1,6 @@
 import chalk from "chalk";
 import { spawn } from "child_process";
+import { ioFramework } from "../helpers/ioFramework.js";
 import { updateFramework } from "../helpers/updateFramework.js";
 
 export const update = (context) => {
@@ -38,6 +39,7 @@ export const update = (context) => {
 			// Quasar Studio Application template
 			console.log(chalk.green("Updating Quasar Studio Application ...."));
 
+			ioFramework.workingPath = context.workingPath;
 			const gitProcess = spawn("git", ["pull"], {
 				shell: true,
 			});
@@ -55,7 +57,11 @@ export const update = (context) => {
 			if (appManifestVersion === currentManifestVersion) return;
 
 			// Update
-			await updateFramework(appManifestVersion, currentManifestVersion);
+			await updateFramework(
+				context,
+				appManifestVersion,
+				currentManifestVersion
+			);
 		});
 };
 
