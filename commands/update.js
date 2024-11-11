@@ -1,6 +1,6 @@
 import chalk from "chalk";
-import { spawn, execSync } from "child_process";
-import { updateFramework } from "../helpers/updateFramework";
+import { spawn } from "child_process";
+import { updateFramework } from "../helpers/updateFramework.js";
 
 export const update = (context) => {
 	context.program
