@@ -4,7 +4,6 @@ export const ioFramework = {
 	workingPath: process.cwd(),
 
 	async getModule(fullname, name) {
-		console.log(this.workingPath);
 		const filename =
 			"file://" + this.workingPath + "/framework/" + fullname + ".mjs";
 		//this.workingPath + "/framework/" + fullname + ".mjs";

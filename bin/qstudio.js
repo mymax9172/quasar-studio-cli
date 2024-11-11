@@ -29,9 +29,6 @@ await (async function () {
 		workingPath: path,
 	};
 
-	// Check if working path is a Quasar Application
-	console.log("Working path:", context.workingPath);
-
 	if (!fs.existsSync(context.workingPath + "/quasar.config.js")) {
 		console.log(
 			chalk.red(
@@ -54,6 +51,9 @@ await (async function () {
 			figlet.textSync("Quasar Studio", { horizontalLayout: "standard" })
 		)
 	);
+
+	// Check if working path is a Quasar Application
+	console.log(chalk.blue("Working path:", context.workingPath));
 
 	if (process.argv[2] === "/t") {
 		const args = [];

@@ -47,21 +47,26 @@ export const update = (context) => {
 				console.log("Quasar Studio Application", info + "");
 			});
 
-			// Framework folder update
-			const application = await ioFramework.getModule(
-				"config/application",
-				"application"
-			);
-			const appManifestVersion = application.manifestVersion;
-			const currentManifestVersion = context.manifestVersion;
-			if (appManifestVersion === currentManifestVersion) return;
+			gitProcess.stdout.on("close", async (info) => {
+				// Framework folder update
+				const application = await ioFramework.getModule(
+					"config/application",
+					"application"
+				);
+				const appManifestVersion = application.manifestVersion;
+				const currentManifestVersion = context.manifestVersion;
+				if (appManifestVersion === currentManifestVersion) {
+					console.log("Framework folder up to date.");
+					return;
+				}
 
-			// Update
-			await updateFramework(
-				context,
-				appManifestVersion,
-				currentManifestVersion
-			);
+				// Update
+				await updateFramework(
+					context,
+					appManifestVersion,
+					currentManifestVersion
+				);
+			});
 		});
 };
 

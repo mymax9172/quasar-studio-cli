@@ -21,20 +21,24 @@ export const init = (context) => {
 		.action(async () => {
 			// Check if the framework directory exists
 			try {
-				await fs.stat("./framework");
+				await fs.stat(context.workingPath + "./framework");
 
 				const response = await inquirer.prompt(confirmQuestion);
 				if (!response.confirm) return;
 
 				// Remove the existing folder
-				await fs.rm("./framework", { recursive: true });
+				await fs.rm(context.workingPath + "./framework", { recursive: true });
 			} catch (error) {}
 
 			try {
 				// Create the folder structure
-				await fs.cp(context.path + "/templates/framework", "./framework", {
-					recursive: true,
-				});
+				await fs.cp(
+					"./templates/framework",
+					context.workingPath + "/framework",
+					{
+						recursive: true,
+					}
+				);
 
 				console.log(chalk.green("Framework folder created"));
 			} catch (error) {
