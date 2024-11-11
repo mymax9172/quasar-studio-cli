@@ -27,6 +27,7 @@ await (async function () {
 		manifestVersion: "0.1.1",
 		program,
 		workingPath: path,
+		libPath: dirname(fileURLToPath(import.meta.url)) + "\\..",
 	};
 
 	if (!fs.existsSync(context.workingPath + "/quasar.config.js")) {
@@ -52,9 +53,10 @@ await (async function () {
 		)
 	);
 
-	// Check if working path is a Quasar Application
 	console.log(chalk.blue("Working path:", context.workingPath));
+	console.log(chalk.blue("Library path:", context.libPath));
 
+	// Check if working path is a Quasar Application
 	if (process.argv[2] === "/t") {
 		const args = [];
 		process.argv.forEach((e, index) => {
