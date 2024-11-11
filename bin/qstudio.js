@@ -20,6 +20,7 @@ import { language } from "../commands/language.js";
 program.name("qstudio").version("0.1").description("Quasar Studio");
 
 const context = {
+	manifestVersion: "0.1.0",
 	program,
 	path: dirname(fileURLToPath(import.meta.url)) + "/..",
 };
