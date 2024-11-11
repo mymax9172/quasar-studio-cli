@@ -41,7 +41,7 @@ export const update = (context) => {
 				encoding: "utf8",
 			});
 
-			npmProcess.stdout.on("data", (chunk) => {
+			npmProcess.stdout.on("data", (info) => {
 				console.log("Quasar Studio CLI", info + "");
 			});
 
