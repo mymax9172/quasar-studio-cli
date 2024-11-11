@@ -90,8 +90,13 @@ By using the CLI the version can be updated using the following
 
 In this case, anytime a new build is created the current version is updated, by incrementing by 1 the minor version
 
+#### Date versioning
+
+In this case, anytime a new build is created the current version is updated, using the last 2 digits of the year and two digits for the month (for example: version 2503 created Mar 2025). Build number is automatcially created based on the actual date of the build
+
 ### Build
 
+TO BE DONE
 Build a new application, ready to be released
 
 `$ qstudio build -i`

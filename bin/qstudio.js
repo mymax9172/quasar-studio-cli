@@ -13,7 +13,7 @@ import { dirname } from "path";
 import { init } from "../commands/init.js";
 import { test } from "../commands/test.js";
 import { update } from "../commands/update.js";
-
+import { build } from "../commands/build.js";
 import { version } from "../commands/version.js";
 import { language } from "../commands/language.js";
 
@@ -43,7 +43,7 @@ await (async function () {
 	init(context);
 	test(context);
 	update(context);
-
+	build(context);
 	version(context);
 	language(context);
 

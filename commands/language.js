@@ -16,7 +16,6 @@ export const language = (context) => {
 		)
 		.option("-ak, --add-key <key>", "add a key to all language files")
 		.action(async (options) => {
-			console.log(options);
 			if (options.add) {
 				const isocode = options.add;
 

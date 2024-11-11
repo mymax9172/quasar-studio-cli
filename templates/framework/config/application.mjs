@@ -21,6 +21,10 @@ export const application = {
 		default: "default",
 		templates: ["default"],
 	},
-	themes: {},
+	themes: {
+		configurable: false,
+		default: "default",
+		templates: ["default"],
+	},
 	entitlements: [],
 };
