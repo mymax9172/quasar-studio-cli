@@ -1,5 +1,5 @@
 export const iconLibrary = {
-  bars: "fa-solid fa-bars",
-  home: "fa-solid fa-house",
-  back: "fa-solid fa-circle-left",
+	"qs-bars": "fa-solid fa-bars",
+	"qs-home": "fa-solid fa-house",
+	"qs-back": "fa-solid fa-circle-left",
 };

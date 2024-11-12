@@ -8,7 +8,6 @@
 		"qstudio": "./bin/qstudio.js"
 	},
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
 		"release": "release-it --only-version"
 	},
 	"author": "",
