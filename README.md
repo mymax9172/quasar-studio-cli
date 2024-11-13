@@ -82,13 +82,15 @@ export const application = {
 };
 ```
 
-By using the CLI the version can be updated using the following
-`$ qstudio version -i`, this increments by 1 the minor version and update the build number bases on current date
-`$ qstudio version -I`, this increments by 1 the major version (setting to 0 the minor version) and update the build number bases on current date
+Without option, the current version is reported.
+
+By using the CLI the version can be updated using the following (only if type is 'manual')
+`$ qstudio version [-i]`, this increments by 1 the minor version and update the build number bases on current date
+`$ qstudio version [-I]`, this increments by 1 the major version (setting to 0 the minor version) and update the build number bases on current date
 
 #### Auto versioning
 
-In this case, anytime a new build is created the current version is updated, by incrementing by 1 the minor version
+In this case (type = 'auto'), anytime a new build is created the current version is updated, by incrementing by 1 the minor version (see [build](#build) command)
 
 #### Date versioning
 
@@ -96,9 +98,9 @@ In this case, anytime a new build is created the current version is updated, usi
 
 ### Build
 
-TO BE DONE
 Build a new application, ready to be released
 
-`$ qstudio build -i`
+`$ qstudio build [-m] [-d <date>]`
 
-> Once updated the web application and (optionally) the framework folder check if any suggestion is provided to adjust your own configuration
+if versioning type is _auto_ the minor release is updated. Using the option -m the major release is incremented instead.
+if versioning type is _date_ the version number is updated with the current date. Using the option -d the version is created using the give date

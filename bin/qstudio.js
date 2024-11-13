@@ -11,6 +11,7 @@ import { fileURLToPath } from "url";
 import { dirname } from "path";
 
 import { init } from "../commands/init.js";
+import { install } from "../commands/install.js";
 import { test } from "../commands/test.js";
 import { update } from "../commands/update.js";
 import { build } from "../commands/build.js";
@@ -20,8 +21,7 @@ import { language } from "../commands/language.js";
 await (async function () {
 	program.name("qstudio").version("0.1").description("Quasar Studio");
 
-	let path = process.cwd(); // dirname(fileURLToPath(import.meta.url)) + "/..";
-	if (process.argv[2] === "/t") path = process.cwd() + "\\" + process.argv[3];
+	let path = process.cwd();
 
 	const context = {
 		manifestVersion: "0.1.1",
@@ -41,6 +41,7 @@ await (async function () {
 	}
 
 	init(context);
+	install(context);
 	test(context);
 	update(context);
 	build(context);
@@ -57,13 +58,5 @@ await (async function () {
 	console.log(chalk.blue("Library path:", context.libPath));
 
 	// Check if working path is a Quasar Application
-	if (process.argv[2] === "/t") {
-		const args = [];
-		process.argv.forEach((e, index) => {
-			if (index >= 4) args.push(e);
-		});
-		program.parse(args, { from: "user" });
-	} else {
-		program.parse(process.argv);
-	}
+	program.parse(process.argv);
 })();

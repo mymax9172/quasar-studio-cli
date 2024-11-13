@@ -1,6 +1,7 @@
 import chalk from "chalk";
 import { spawn } from "child_process";
 import { versionHandler } from "../helpers/versions.js";
+import { ioFramework } from "../helpers/ioFramework.js";
 
 export const build = (context) => {
 	context.program
@@ -9,6 +10,10 @@ export const build = (context) => {
 		.option(
 			"-m, --major <key>",
 			"increment the major release if versioning is auto, otherwise only the minor release is updated"
+		)
+		.option(
+			"-d, --date <date>",
+			"use a given date for the version instead of the current date"
 		)
 		.action(async (options) => {
 			console.log(chalk.green("Building...."));
@@ -19,20 +24,20 @@ export const build = (context) => {
 				console.log(chalk.blue(chunk));
 			});
 
-			child.on("close", (code) => {
+			child.on("close", async (code) => {
 				console.log(chalk.green("Building process completed."));
-			});
 
-			if (options.major) {
-				if (application.versioning.type != "auto") {
-					console.log(
-						chalk.red(
-							"Versioning type is not auto, cannot change it using this command"
-						)
-					);
-					return;
+				const application = await ioFramework.getModule(
+					"config/application",
+					"application"
+				);
+
+				if (application.versioning.type === "auto") {
+					if (options.major) await versionHandler.incrementMajor();
+					else await versionHandler.incrementMinor();
+				} else if (application.versioning.type === "date") {
+					await versionHandler.updateDate(options.date);
 				}
-				await versionHandler.incrementMajor();
-			} else await versionHandler.incrementMinor;
+			});
 		});
 };

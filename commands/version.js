@@ -15,8 +15,28 @@ export const version = (context) => {
 				"application"
 			);
 
-			if (options.increment) versionHandler.incrementMinor();
-			else if (options.Increment) versionHandler.incrementMajor();
+			if (options.increment) {
+				if (application.versioning.type != "manual") {
+					console.log(
+						chalk.red(
+							"Versioning type is not manual, cannot change it using this command"
+						)
+					);
+					return;
+				}
+
+				await versionHandler.incrementMinor();
+			} else if (options.Increment) {
+				if (application.versioning.type != "manual") {
+					console.log(
+						chalk.red(
+							"Versioning type is not manual, cannot change it using this command"
+						)
+					);
+					return;
+				}
+				await versionHandler.incrementMajor();
+			}
 
 			console.log(
 				chalk.green(
