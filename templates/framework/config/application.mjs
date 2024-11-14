@@ -28,4 +28,8 @@ export const application = {
 		templates: ["default"],
 	},
 	entitlements: [],
+	storyboard: {
+		home: "home-page",
+		pages: ["home-page"],
+	},
 };
