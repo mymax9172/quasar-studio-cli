@@ -7,8 +7,6 @@ export default {
       items: ["qs-title"],
     },
     right: {
-      showVersion: false,
-      showLanguageSwitcher: true,
       items: ["qs-lang-switcher"],
     },
     style: {
