@@ -1,15 +1,31 @@
 export const navigation = {
-  position: "panel",
+  position: "none",
+
   items: [
     {
-      name: "Home",
-      title: "Home page",
-      caption: "Home page",
-      icon: "qs-home",
-      to: "Home",
-      style: {
-        iconcolor: "primary",
-      },
+      name: "newsletter",
+      title: "Newsletter",
+      to: "newsletter",
+    },
+    {
+      name: "podcast",
+      title: "Podcast",
+      to: "podcast",
+    },
+    {
+      name: "books",
+      title: "Books",
+      to: "books",
+    },
+    {
+      name: "blog",
+      title: "Blog",
+      to: "blog",
+    },
+    {
+      name: "investing",
+      title: "Investing",
+      to: "investing",
     },
   ],
 };

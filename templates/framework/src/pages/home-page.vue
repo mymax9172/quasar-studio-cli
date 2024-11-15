@@ -1,11 +1,9 @@
 <template>
-  <div class="flex flex-center">
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-vertical.svg"
-      style="width: 200px; height: 200px"
-    />
-    <div>{{ name }}</div>
+  <div>
+    <span class="q-ma-xl text-h3">Hi 👋, I'm Gergely</span>
+    <p class="q-pa-md" style="text-align: center; max-width: 500px">
+      My new book, The Software Engineer's Guidebook is out! I write a newsletter, a blog and published a few books. Follow me on LinkedIn or Twitter.
+    </p>
   </div>
 </template>
 
@@ -14,9 +12,7 @@ export default {
   name: "HomePage",
 
   data() {
-    return {
-      name: this.$configuration.layoutManager.currentDevice,
-    };
+    return {};
   },
 };
 </script>

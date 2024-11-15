@@ -14,25 +14,19 @@ export default {
 
   layout: {
     header: {
-      backcolor: "primary",
-      textcolor: "white",
+      backcolor: "white",
+      textcolor: "grey",
     },
     footer: {
-      backcolor: "primary",
-      textcolor: "white",
-    },
-    leftPanel: {
       backcolor: "white",
-      textcolor: "red",
+      textcolor: "black",
     },
-    rightPanel: {
-      backcolor: "white",
-      textcolor: "primary",
-    },
+    leftPanel: {},
+    rightPanel: {},
   },
+
   navigation: {
     backcolor: "white",
-    textcolor: "primary",
-    iconcolor: "primary",
+    textcolor: "grey",
   },
 };

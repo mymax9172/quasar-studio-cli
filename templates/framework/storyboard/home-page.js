@@ -1,6 +1,6 @@
 export default {
   // Name of the page
-  name: "HomePage",
+  name: "home",
 
   // Title of the page
   title: "Home",
