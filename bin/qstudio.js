@@ -24,8 +24,8 @@ import { version } from "../commands/version.js";
 import { language } from "../commands/language.js";
 
 await (async function () {
-  const version = await packageHandler.get("version");
-  program.name("qstudio").version(version.result.replaceAll('"', "")).description("Quasar Studio");
+  const version = (await packageHandler.get("version")).result.toString().replaceAll('"', "");
+  program.name("qstudio").version(version).description("Quasar Studio");
 
   let cwd = process.cwd();
 
