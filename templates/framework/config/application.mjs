@@ -1,21 +1,19 @@
 export const application = {
-  manifestVersion: "0.1.0",
+  // Manifest version of this framework
+  manifestVersion: "0.1.1",
 
+  // Name of the application
   name: "MyBlog",
 
+  // Title (Public name) of the application
   title: "PragramticEngineer",
 
+  // Credits
   credits: {
     author: "Massimiliano Agostinoni",
     copyright: "MIT",
   },
 
-  versioning: {
-    type: "auto",
-    version: {
-      number: "0.3",
-      build: "20241117.104344",
-    },
-  },
-
+  // Versioning mode
+  versioning: "auto",
 };

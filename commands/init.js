@@ -61,10 +61,11 @@ export const init = (context) => {
         let result = await spawnAsync("npm init -y ", { cwd: frameworkPath });
         if (result.code != 0) throw new Error(result.error);
 
-        // Change package properties
+        // Change NPM package properties
         packageHandler.path = frameworkPath;
         await packageHandler.set("name", response.name);
         if (response.author) await packageHandler.set("author", response.author);
+        await packageHandler.set("version", "0.0.1");
 
         // Clone the quasar studio folder
         result = await spawnAsync("git clone https://github.com/" + gitRepo + ".git client", { cwd: rootPath });

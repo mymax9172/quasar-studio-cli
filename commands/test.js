@@ -10,7 +10,6 @@ export const test = (context) => {
       if (!checkWorkingPath(context)) return;
 
       console.log(chalk.green("Running test web server"));
-      console.log(context.clientPath);
 
       await spawnAsync("quasar dev", { cwd: context.clientPath });
     });

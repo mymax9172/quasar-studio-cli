@@ -1,4 +1,3 @@
-import * as fs from "fs";
 import chalk from "chalk";
 
 export function checkWorkingPath(context) {

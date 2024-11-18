@@ -15,7 +15,7 @@ export async function spawnAsync(command, options) {
 
     child.stderr.on("data", (data) => {
       error = data.toString();
-      console.error(error);
+      console.log(chalk.red(error));
     });
 
     child.on("exit", (code) => {

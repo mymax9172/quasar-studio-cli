@@ -24,8 +24,6 @@ import { version } from "../commands/version.js";
 import { language } from "../commands/language.js";
 
 await (async function () {
-
-
   let cwd = process.cwd();
 
   const context = {
@@ -41,9 +39,8 @@ await (async function () {
   program.name("qstudio").version(version).description("Quasar Studio");
 
   init(context);
-  // install(context);
   test(context);
-  // update(context);
+  update(context);
   // build(context);
   // version(context);
   // language(context);

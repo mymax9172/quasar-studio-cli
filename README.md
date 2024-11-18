@@ -12,31 +12,41 @@ From now on, call qstudio from any folder that contains a Quasar application to 
 
 ## **Table of Contest**
 
-[**Install**](#install) - Install all missing libraries on the Quasar Studio Application
-[**Init**](#init) - Initialize the framework folder
+<!-- [**Install**](#install) - Install all missing libraries on the Quasar Studio Application -->
+[**Init**](#init) - Create a new Quasar Studio Application
 [**Test**](#test) - Run web server
 [**Update**](#update) - Update the Quasar Studio Application
 [**Version**](#version) - Manage versioning of the Quasar Studio Application
 
 ## Commands
 
-### Install
+<!-- ### Install
 
 Install all missing libraries on the Quasar Studio Application, this should be called once created a new Quasar Studio Application
 
-`$ qstudio install`
+`$ qstudio install` -->
 
 ### Init
 
-Initialize the framework folder for a new Quasar Studio Application
+Create a new Quasar Studio Application
 
 `$ qstudio init`
 
-> If the framework folder already exist a confirmation is asked before deleting everything
+> A new application will be created from the location this command is launched
+
+A few questions will be asked, like the application name, the folder name and the author. First two are mandatory.
+
+Once completed, this command will:
+1) Create a new folder with the given folder name
+2) Create a subfolder named 'framework' where the configuration is setup
+3) Create a subfolder named 'client' there tyhe acyial Quasar Studio app is cloned from the github repository
+4) Install all dependancies
+
+Change the current directory to the /framework directory to use qstudio CLI
 
 ### Test
 
-Run the local web server to test the Quasar Studio Application
+Run the local web server to test the Quasar Studio Application. Needs to be launched inside the /framework folder
 
 `$ qstudio test`
 
