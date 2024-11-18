@@ -1,11 +1,16 @@
 #!/usr/bin/env node
 
 import * as fs from "fs";
+import path from "path";
+
 import { program } from "commander";
 import chalk from "chalk"; // Colors
 import inquirer from "inquirer"; // Questions and forms, confirmations
 import ora from "ora"; // Waiting, spinning chars
 import figlet from "figlet"; // Char opening
+
+import { packageHandler } from "../helpers/packageHandler.js";
+import { spawnAsync } from "../helpers/spawnAsync.js";
 
 import { fileURLToPath } from "url";
 import { dirname } from "path";
@@ -19,44 +24,35 @@ import { version } from "../commands/version.js";
 import { language } from "../commands/language.js";
 
 await (async function () {
-	program.name("qstudio").version("0.1").description("Quasar Studio");
+  program.name("qstudio").version("0.1").description("Quasar Studio");
 
-	let path = process.cwd();
+  let cwd = process.cwd();
 
-	const context = {
-		manifestVersion: "0.1.1",
-		program,
-		workingPath: path,
-		libPath: dirname(fileURLToPath(import.meta.url)) + "\\..",
-	};
+  const context = {
+    manifestVersion: "0.1.1",
+    program,
+    workingPath: cwd,
+    clientPath: path.normalize(cwd + "/../client"),
+    libPath: path.normalize(dirname(fileURLToPath(import.meta.url)) + "\\.."),
+  };
 
-	if (!fs.existsSync(context.workingPath + "/quasar.config.js")) {
-		console.log(
-			chalk.red(
-				"Use qstudio only in a Quasar application folder, this folder is not ok: " +
-					context.workingPath
-			)
-		);
-		return;
-	}
+  const result = await packageHandler.get("name");
+  console.log("NAME: " + result.result);
 
-	init(context);
-	install(context);
-	test(context);
-	update(context);
-	build(context);
-	version(context);
-	language(context);
+  init(context);
+  // install(context);
+  test(context);
+  // update(context);
+  // build(context);
+  // version(context);
+  // language(context);
 
-	console.log(
-		chalk.yellow(
-			figlet.textSync("Quasar Studio", { horizontalLayout: "standard" })
-		)
-	);
+  console.log(chalk.yellow(figlet.textSync("Quasar Studio", { horizontalLayout: "standard" })));
 
-	console.log(chalk.blue("Working path:", context.workingPath));
-	console.log(chalk.blue("Library path:", context.libPath));
+  console.log(chalk.blue("Working path:", context.workingPath));
+  console.log(chalk.blue("Library path:", context.libPath));
+  console.log(chalk.blue("Client path:", context.clientPath));
 
-	// Check if working path is a Quasar Application
-	program.parse(process.argv);
+  // Check if working path is a Quasar Application
+  program.parse(process.argv);
 })();

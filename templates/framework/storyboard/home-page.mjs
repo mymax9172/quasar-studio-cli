@@ -12,7 +12,7 @@ export default {
   // If custom type, a page detail is provided
   definition: {
     class: "flex flex-center",
-    component: () => import("framework/src/pages/home-page.vue"),
+    component: "home-page",
   },
 
   // Layout used by the page (if empty it uses the default one)
