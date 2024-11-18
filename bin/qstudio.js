@@ -24,8 +24,7 @@ import { version } from "../commands/version.js";
 import { language } from "../commands/language.js";
 
 await (async function () {
-  const version = (await packageHandler.get("version")).result.toString().replaceAll('"', "");
-  program.name("qstudio").version(version).description("Quasar Studio");
+
 
   let cwd = process.cwd();
 
@@ -36,6 +35,10 @@ await (async function () {
     clientPath: path.normalize(cwd + "/../client"),
     libPath: path.normalize(dirname(fileURLToPath(import.meta.url)) + "\\.."),
   };
+
+  packageHandler.path = context.libPath;
+  const version = (await packageHandler.get("version")).result.toString().replaceAll('"', "");
+  program.name("qstudio").version(version).description("Quasar Studio");
 
   init(context);
   // install(context);
