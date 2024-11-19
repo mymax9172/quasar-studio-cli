@@ -5,7 +5,7 @@ export const ioFramework = {
 
   async getModule(fullname, name) {
     const filename = "file://" + this.path + "/" + fullname + ".mjs";
-    //this.workingPath + "/framework/" + fullname + ".mjs";
+    console.log(filename);
     const module = await import(filename);
     return module[name];
   },

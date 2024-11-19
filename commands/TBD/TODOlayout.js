@@ -1,6 +1,6 @@
 import chalk from "chalk";
 
-import { ioFramework } from "../helpers/ioFramework.js";
+import { ioFramework } from "../../helpers/ioFramework.js";
 
 export const language = (context) => {
 	context.program

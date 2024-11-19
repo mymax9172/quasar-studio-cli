@@ -10,46 +10,45 @@ import ora from "ora"; // Waiting, spinning chars
 import figlet from "figlet"; // Char opening
 
 import { packageHandler } from "../helpers/packageHandler.js";
-import { spawnAsync } from "../helpers/spawnAsync.js";
 
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 
-import { init } from "../commands/init.js";
-import { install } from "../commands/install.js";
-import { test } from "../commands/test.js";
-import { update } from "../commands/update.js";
-import { build } from "../commands/build.js";
-import { version } from "../commands/version.js";
-import { language } from "../commands/language.js";
+import { initCommand } from "../commands/initCommand.js";
+import { newCommand } from "../commands/newCommand.js";
+import { useCommand } from "../commands/useCommand.js";
+import { testCommand } from "../commands/testCommand.js";
+import { updateCommand } from "../commands/updateCommand.js";
+import { versionCommand } from "../commands/versionCommand.js";
 
 await (async function () {
-  let cwd = process.cwd();
-
   const context = {
     manifestVersion: "0.1.1",
     program,
-    workingPath: cwd,
-    clientPath: path.normalize(cwd + "/../client"),
+    workingPath: process.cwd(),
     libPath: path.normalize(dirname(fileURLToPath(import.meta.url)) + "\\.."),
   };
 
   packageHandler.path = context.libPath;
-  const version = (await packageHandler.get("version")).result.toString().replaceAll('"', "");
-  program.name("qstudio").version(version).description("Quasar Studio");
+  const pkgVersion = (await packageHandler.get("version")).result.toString().replaceAll('"', "");
+  program.name("qstudio").version(pkgVersion).description("Quasar Studio");
 
-  init(context);
-  test(context);
-  update(context);
-  // build(context);
-  // version(context);
-  // language(context);
+  // General commands
+  initCommand(context);
+  updateCommand(context);
+
+  // App top level commands
+  newCommand(context);
+  useCommand(context);
+  testCommand(context);
+
+  // App configuration commands
+  versionCommand(context);
 
   console.log(chalk.yellow(figlet.textSync("Quasar Studio", { horizontalLayout: "standard" })));
-
-  console.log(chalk.blue("Working path:", context.workingPath));
-  console.log(chalk.blue("Library path:", context.libPath));
-  console.log(chalk.blue("Client path:", context.clientPath));
+  // console.log(chalk.blue("Working path:", context.workingPath));
+  // console.log(chalk.blue("Library path:", context.libPath));
+  // console.log(chalk.blue("Client path:", context.clientPath));
 
   // Check if working path is a Quasar Application
   program.parse(process.argv);

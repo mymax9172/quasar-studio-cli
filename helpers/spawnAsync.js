@@ -10,7 +10,7 @@ export async function spawnAsync(command, options) {
   return new Promise((resolve) => {
     child.stdout.on("data", (data) => {
       result = data.toString();
-      console.log(chalk.blue(data));
+      console.log(chalk.grey(data));
     });
 
     child.stderr.on("data", (data) => {
