@@ -1,6 +1,6 @@
 {
   "name": "qstudio-cli",
-  "version": "0.1.27",
+  "version": "0.1.28",
   "description": "Quasar Studio CLI is the way-yo-go tool to use Quasar Studio properly",
   "main": "./bin/qstudio.js",
   "type": "module",
