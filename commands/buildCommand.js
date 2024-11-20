@@ -18,8 +18,7 @@ export const buildCommand = (context) => {
 
       console.log(chalk.green("Building a new release"));
 
-      //const result = await spawnAsync("quasar build", { cwd: pathHandler.getClientFolder() });
-      const result = { code: 0 };
+      const result = await spawnAsync("quasar build", { cwd: pathHandler.getClientFolder() });
 
       if (result.code === 0) {
         console.log(chalk.green("Building process completed."));
