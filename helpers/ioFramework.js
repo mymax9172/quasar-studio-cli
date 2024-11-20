@@ -1,11 +1,12 @@
 import * as fs from "fs/promises";
+import path from "path";
 
 export const ioFramework = {
   path: ".",
 
   async getModule(fullname, name) {
-    const filename = "file://" + this.path + "/" + fullname + ".mjs";
-    console.log(filename);
+    const filename = "file://" + path.join(this.path, fullname + ".mjs");
+    //console.log("Reading " + filename);
     const module = await import(filename);
     return module[name];
   },

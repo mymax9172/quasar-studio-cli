@@ -5,11 +5,15 @@ export const packageHandler = {
 
   async get(key) {
     const command = "npm pkg get " + key;
-    return await spawnAsync(command, { cwd: this.path });
+    const result = await spawnAsync(command, { cwd: this.path }, true);
+    if (result.code != 0) throw new Error(result.error);
+    else return result.result;
   },
 
   async set(key, value) {
     const command = "npm pkg set " + key + "=" + value;
-    return await spawnAsync(command, { cwd: this.path });
+    const result = await spawnAsync(command, { cwd: this.path }, true);
+    if (result.code != 0) throw new Error(result.error);
+    else return result.result;
   },
 };

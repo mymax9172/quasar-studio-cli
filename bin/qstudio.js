@@ -31,7 +31,7 @@ await (async function () {
   };
 
   packageHandler.path = context.libPath;
-  const pkgVersion = (await packageHandler.get("version")).result.toString().replaceAll('"', "");
+  const pkgVersion = (await packageHandler.get("version")).toString().replaceAll('"', "");
   program.name("qstudio").version(pkgVersion).description("Quasar Studio");
 
   // General commands

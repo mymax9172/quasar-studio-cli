@@ -78,6 +78,7 @@ export const versionHandler = {
   async incrementPatch() {
     ioFramework.path = this.path;
 
+    console.log("*" + this.path + "*");
     const version = await ioFramework.getModule("config/version", "version");
     const parts = version.number.split(".");
     version.number = parts[0] + "." + parts[1] + "." + (Number(parts[2]) + 1);
@@ -98,8 +99,10 @@ export const versionHandler = {
     const version = await ioFramework.getModule("config/version", "version");
 
     let period;
+
     if (date) period = new Date(date);
     else period = new Date();
+    if (isNaN(period.getTime())) period = new Date();
 
     version.number = period.getFullYear().toString().substring(2) + "." + (period.getMonth() + 1).toString().padStart(2, "0");
     version.build = this.createBuildNumber();
