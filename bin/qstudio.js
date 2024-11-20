@@ -20,6 +20,7 @@ import { useCommand } from "../commands/useCommand.js";
 import { testCommand } from "../commands/testCommand.js";
 import { updateCommand } from "../commands/updateCommand.js";
 import { versionCommand } from "../commands/versionCommand.js";
+import { buildCommand } from "../commands/buildCommand.js";
 
 await (async function () {
   const context = {
@@ -41,6 +42,7 @@ await (async function () {
   newCommand(context);
   useCommand(context);
   testCommand(context);
+  buildCommand(context);
 
   // App configuration commands
   versionCommand(context);
