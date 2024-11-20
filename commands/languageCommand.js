@@ -1,4 +1,5 @@
 import chalk from "chalk";
+import path from "path";
 import { ioFramework } from "../helpers/ioFramework.js";
 import { templateHandler } from "../helpers/templateHandler.js";
 import { pathHandler } from "../helpers/pathHandler.js";
@@ -23,20 +24,14 @@ export const languageCommand = (context) => {
       if (options.add) {
         const isocode = options.add;
 
-        const application = await ioFramework.getModule("config/application", "application");
-        const languageTemplate = await import(templateHandler.getLanguageTemplate());
-
         try {
           // Check if the give isocode exists already
+          if (list.includes(isocode)) throw new Error("Language " + isocode + " already supported");
 
-          if (application.languages.supported.includes(isocode)) throw new Error("Language " + isocode + " already supported");
+          const languageTemplate = await import("file://" + path.join(context.libPath, templateHandler.getLanguageTemplate()));
 
           // Create an empty language file
-          await ioFramework.setModule("languages/" + options.add, "language", languageTemplate);
-
-          // Update the application file
-          application.languages.supported.push(isocode);
-          await ioFramework.setModule("config/application", "application", application);
+          await ioFramework.setModule("languages/" + options.add, "language", languageTemplate.language);
 
           console.log(chalk.green("Language for " + isocode + " has been created"));
         } catch (error) {
@@ -45,15 +40,9 @@ export const languageCommand = (context) => {
       } else if (options.remove) {
         const isocode = options.remove;
 
-        const application = await ioFramework.getModule("config/application", "application");
-
         try {
           // Check if the give isocode exists already
-          if (!application.languages.supported.includes(isocode)) throw new Error("Language " + isocode + " is not supported");
-
-          // Update the application file
-          application.languages.supported = application.languages.supported.filter((e) => e != isocode);
-          await ioFramework.setModule("config/application", "application", application);
+          if (!list.includes(isocode)) throw new Error("Language " + isocode + " is not supported");
 
           // Remove the file
           await ioFramework.removeFile("languages/" + isocode);
@@ -63,23 +52,22 @@ export const languageCommand = (context) => {
           console.log(chalk.red(error));
         }
       } else if (options.addkey) {
-        const application = await ioFramework.getModule("config/application", "application");
-
-        application.languages.supported.forEach(async (isocode) => {
+        list.forEach(async (isocode) => {
           const languageDefinition = await ioFramework.getModule("languages/" + isocode, "language");
           languageDefinition[options.addkey] = "";
 
           await ioFramework.setModule("languages/" + isocode, "language", languageDefinition);
         });
       } else if (options.remkey) {
-        const application = await ioFramework.getModule("config/application", "application");
 
-        application.languages.supported.forEach(async (isocode) => {
+        list.forEach(async (isocode) => {
           const languageDefinition = await ioFramework.getModule("languages/" + isocode, "language");
           delete languageDefinition[options.remkey];
 
           await ioFramework.setModule("languages/" + isocode, "language", languageDefinition);
         });
+      } else {
+        console.log(chalk.blue("Supported languages: " + list));
       }
     });
 };
