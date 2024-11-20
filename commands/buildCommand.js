@@ -1,5 +1,5 @@
 import chalk from "chalk";
-import { versionHandler } from "../../helpers/versions.js";
+import { versionHandler } from "../helpers/versions.js";
 import { ioFramework } from "../helpers/ioFramework.js";
 import { pathHandler } from "../helpers/pathHandler.js";
 import { spawnAsync } from "../helpers/spawnAsync.js";
