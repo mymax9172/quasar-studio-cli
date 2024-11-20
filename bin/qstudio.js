@@ -21,6 +21,7 @@ import { testCommand } from "../commands/testCommand.js";
 import { updateCommand } from "../commands/updateCommand.js";
 import { versionCommand } from "../commands/versionCommand.js";
 import { buildCommand } from "../commands/buildCommand.js";
+import { languageCommand } from "../commands/languageCommand.js";
 
 await (async function () {
   const context = {
@@ -38,14 +39,15 @@ await (async function () {
   initCommand(context);
   updateCommand(context);
 
-  // App top level commands
+  // Project level commands
   newCommand(context);
   useCommand(context);
   testCommand(context);
   buildCommand(context);
 
-  // App configuration commands
+  // App level commands
   versionCommand(context);
+  languageCommand(context);
 
   console.log(chalk.yellow(figlet.textSync("Quasar Studio", { horizontalLayout: "standard" })));
   // console.log(chalk.blue("Working path:", context.workingPath));

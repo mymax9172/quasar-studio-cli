@@ -9,4 +9,5 @@ export default {
       path: "/templates/frameworks/blog",
     },
   ],
+  language: "/templates/language.js",
 };

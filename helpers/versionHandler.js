@@ -78,7 +78,6 @@ export const versionHandler = {
   async incrementPatch() {
     ioFramework.path = this.path;
 
-    console.log("*" + this.path + "*");
     const version = await ioFramework.getModule("config/version", "version");
     const parts = version.number.split(".");
     version.number = parts[0] + "." + parts[1] + "." + (Number(parts[2]) + 1);

@@ -1,3 +1,3 @@
-export const languages = {
+export const language = {
   "qs-version": "Version",
 };

@@ -10,4 +10,8 @@ export const templateHandler = {
   getFrameworkTemplatePath(name) {
     return templates.frameworks.find((e) => e.name === name).path;
   },
+
+  getLanguageTemplate() {
+    return templates.language;
+  },
 };

@@ -1,24 +1,34 @@
 import chalk from "chalk";
+import { ioFramework } from "../helpers/ioFramework.js";
+import { templateHandler } from "../helpers/templateHandler.js";
+import { pathHandler } from "../helpers/pathHandler.js";
+import { languageHandler } from "../helpers/languageHandler.js";
 
-import { ioFramework } from "../../helpers/ioFramework.js";
-
-export const language = (context) => {
+export const languageCommand = (context) => {
   context.program
-    .command("language")
+    .command("app:language")
     .description("manage supported language")
     .option("-a, --add <isocode>", "add a new support language file for the given iso code")
     .option("-r, --remove <isocode>", "remove support language file for the given iso code")
     .option("-ak, --addkey <key>", "add a key to all language files")
-    .option("-rk, --remkey <key>", "remove a key to all language files")
+    .option("-rk, --remkey <key>", "remove a key from all language files")
     .action(async (options) => {
+      if (!pathHandler.isAppFolder()) return;
+
+      ioFramework.path = context.workingPath;
+      languageHandler.path = context.workingPath;
+
+      const list = languageHandler.getAllLanguageCodes();
+
       if (options.add) {
         const isocode = options.add;
 
         const application = await ioFramework.getModule("config/application", "application");
-        const languageTemplate = await ioFramework.getModule("languages/en-US", "language");
+        const languageTemplate = await import(templateHandler.getLanguageTemplate());
 
         try {
           // Check if the give isocode exists already
+
           if (application.languages.supported.includes(isocode)) throw new Error("Language " + isocode + " already supported");
 
           // Create an empty language file
